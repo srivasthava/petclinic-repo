@@ -32,7 +32,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'petclinic-repo/target/*.jar'
+            archiveArtifacts artifacts: 'target/*.jar'
         }
     }
 }
