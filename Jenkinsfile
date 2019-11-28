@@ -16,7 +16,7 @@ pipeline {
             steps {               
                 script {
                     PETCLINIC_VERSION = sh (
-                      script: 'xf=`ls *.jar` && echo $xf | awk \'{print substr($1,1,match($1,/.[^.]*$/)-1)}\' | awk \'{print substr($1,match($1,/[0-9]/))}\'', 
+                      script: 'xf=`ls target/*.jar` && echo $xf | awk \'{print substr($1,1,match($1,/.[^.]*$/)-1)}\' | awk \'{print substr($1,match($1,/[0-9]/))}\'', 
                       returnStdout: true
                     ).trim()
                     echo "Petclinic version: ${PETCLINIC_VERSION}"
