@@ -22,7 +22,7 @@ pipeline {
                     echo "Petclinic version: ${PETCLINIC_VERSION}"
 
                     docker.withRegistry('https://registry.kaiburr.com', 'chef01-registry') {
-                        def petclinicImage = docker.build('petclinic:${PETCLINIC_VERSION}', '.')
+                        def petclinicImage = docker.build("petclinic:${PETCLINIC_VERSION}", '.')
                         petclinicImage.push()
                     }
                 }
