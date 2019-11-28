@@ -13,14 +13,14 @@ pipeline {
             }
         }
         stage('Build docker images') {
-            steps {
-                PETCLINIC_VERSION = sh (
-                  script: 'xf=`ls *.jar` && echo $xf | awk \'{print substr($1,1,match($1,/.[^.]*$/)-1)}\' | awk \'{print substr($1,match($1,/[0-9]/))}\'', 
-                  returnStdout: true
-                ).trim()
-                echo "Petclinic version: ${PETCLINIC_VERSION}"
-                
+            steps {               
                 script {
+                    PETCLINIC_VERSION = sh (
+                      script: 'xf=`ls *.jar` && echo $xf | awk \'{print substr($1,1,match($1,/.[^.]*$/)-1)}\' | awk \'{print substr($1,match($1,/[0-9]/))}\'', 
+                      returnStdout: true
+                    ).trim()
+                    echo "Petclinic version: ${PETCLINIC_VERSION}"
+
                     docker.withRegistry('https://registry.kaiburr.com', 'chef01-registry') {
                         def petclinicImage = docker.build('petclinic:${PETCLINIC_VERSION}', '.')
                         petclinicImage.push()
