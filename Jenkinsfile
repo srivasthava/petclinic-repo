@@ -36,7 +36,7 @@ pipeline {
                 
                  docker login -u ${nexus_docker_repo_user} -p ${nexus_docker_repo_password} ${nexus_docker_repo}
 
-                 docker build -t ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION} -f DockerFile .
+                 docker build -t ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION} -f Dockerfile .
 
                  docker push ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION}
                 
