@@ -5,10 +5,10 @@ pipeline {
         label 'Linux'
     }
      
-    tools {
-        jdk 'jdk8'
-        maven 'maven'
-    }
+    //tools {
+    //    jdk 'jdk8'
+    //    maven 'maven'
+    //}
     stages {
         stage('Build') {
             steps {
