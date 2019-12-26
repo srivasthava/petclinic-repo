@@ -1,6 +1,9 @@
 //noinspection GroovyAssignabilityCheck
 pipeline {
-    agent any
+    agent
+    {
+        label 'Linux'
+    }
      
     tools {
         jdk 'jdk8'
