@@ -33,7 +33,7 @@ pipeline {
                sh '''#!/bin/bash -l
                  echo "Publish Docker Image to Nexus"
                 
-                 docker login -u ${docker_repo_user} -p ${docker_repo_password} ${nexus_docker_repo}
+                 docker login -u ${docker_repo_user} -p ${docker_repo_password}
                  docker build -t ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION} -f Dockerfile .
                  docker push ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION}
                 
