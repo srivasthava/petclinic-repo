@@ -26,7 +26,7 @@ pipeline {
                       script: 'xf=`ls target/*.jar` && echo $xf | awk \'{print substr($1,1,match($1,/.[^.]*$/)-1)}\' | awk \'{print substr($1,match($1,/[0-9]/))}\'', 
                       returnStdout: true
                     ).trim()
-                    PETCLINIC_VERSION = "${PETCLINIC_VERSION}${params.version}"
+                    PETCLINIC_VERSION_CUSTOM = "${PETCLINIC_VERSION}${params.version}"
       
                               }       
             
@@ -39,9 +39,9 @@ pipeline {
                 
                  docker login -u ${nexus_docker_repo_user} -p ${nexus_docker_repo_password} ${nexus_docker_repo}
 
-                 docker build -t ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION} -f Dockerfile .
+                 docker build -t ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION_CUSTOM} -f Dockerfile .
 
-                 docker push ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION}
+                 docker push ${nexus_docker_repo}/${dcp_demo_app_tag}:${PETCLINIC_VERSION_CUSTOM}
                 
                  '''
               }                
