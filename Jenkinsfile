@@ -4,7 +4,9 @@ pipeline {
     {
         label 'Linux'
     }
-     
+    parameters {
+        string(name: 'version', defaultValue: '', description: 'Version override appended to maven version number')
+               } 
     //tools {
     //    jdk 'jdk8'
     //    maven 'maven'
@@ -24,6 +26,7 @@ pipeline {
                       script: 'xf=`ls target/*.jar` && echo $xf | awk \'{print substr($1,1,match($1,/.[^.]*$/)-1)}\' | awk \'{print substr($1,match($1,/[0-9]/))}\'', 
                       returnStdout: true
                     ).trim()
+                    PETCLINIC_VERSION = "${PETCLINIC_VERSION}${params.version}"
       
                               }       
             
