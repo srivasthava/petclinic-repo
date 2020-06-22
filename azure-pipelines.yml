@@ -17,8 +17,7 @@ stages:
   jobs:  
   - job: Build
     displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
+    pool: agent-4570308082918399910
     steps:
     - task: Maven@3
       inputs:
